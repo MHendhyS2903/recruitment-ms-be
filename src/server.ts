@@ -18,6 +18,16 @@ async function startServer(): Promise<void> {
       error instanceof Error ? error.message : "Unknown database connection error";
 
     console.error("Failed to connect to database:", message);
+    if (message.includes("127.0.0.1") || message.includes("localhost")) {
+      console.error(
+        [
+          "Database host looks local (127.0.0.1). On Railway, MySQL variables exist on the MySQL service only.",
+          'Open service "recruitment-ms-be" → Variables → New variable → Reference → select MySQL → add MYSQL_URL',
+          "(or MYSQLHOST, MYSQLPORT, MYSQLUSER, MYSQLPASSWORD, MYSQLDATABASE).",
+          "Also set JWT_SECRET on the backend service.",
+        ].join(" ")
+      );
+    }
     process.exit(1);
   }
 }

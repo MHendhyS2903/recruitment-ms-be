@@ -69,6 +69,19 @@ http://localhost:3001/api
 
 ## Railway Deploy
 
+Variabel seperti `MYSQL_URL` / `MYSQLHOST` yang Anda lihat di tab **Variables** service **MySQL** **tidak otomatis** masuk ke service Node. Tanpa itu, backend memakai default `127.0.0.1` dan akan **crash** (`ECONNREFUSED`).
+
+### Wajib: sambungkan env ke service backend
+
+1. Buka project Railway → service **`recruitment-ms-be`** (bukan MySQL).
+2. Buka tab **Variables**.
+3. **New variable** → **Add reference** (atau **Reference**).
+4. Pilih service **MySQL**, lalu tambahkan minimal **`MYSQL_URL`** (internal), atau set paket variabel `MYSQLHOST`, `MYSQLPORT`, `MYSQLUSER`, `MYSQLPASSWORD`, `MYSQLDATABASE`.
+5. Tambahkan manual di service backend: **`JWT_SECRET`**, **`CORS_ORIGIN`** (opsional), **`NODE_ENV=production`**.
+6. **Deploy** ulang service backend.
+
+Setelah itu backend membaca host `mysql.railway.internal` (dari URL/reference), bukan `127.0.0.1`.
+
 Backend ini sudah mendukung env Railway bawaan. Anda bisa memakai salah satu dari dua pendekatan berikut:
 
 ### Opsi 1: pakai env app sendiri
@@ -116,7 +129,7 @@ Catatan:
 
 - `UPLOAD_DIR=/data/uploads` disarankan bila Anda mount Railway Volume.
 - Jika tidak memakai volume, upload file lokal bisa hilang saat redeploy atau restart.
-- Start command yang dipakai project ini adalah `npm start`.
+- Deploy Railway memakai file `railway.toml`: build `npm run build`, start `npm run start:prod` (Node menjalankan `dist/server.js`). Lokal tetap bisa `npm run dev` / `npm start`.
 
 ## Implemented Endpoints
 
