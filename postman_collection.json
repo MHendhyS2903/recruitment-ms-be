@@ -1,0 +1,917 @@
+{
+  "info": {
+    "name": "Recruitment API Collection",
+    "_postman_id": "3f0d0a2b-6f56-4f7e-b8e9-6e3f4dd0a001",
+    "description": "Postman collection for the Express.js recruitment API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Departments",
+      "item": [
+        {
+          "name": "Get Departments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/departments?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "departments"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Department By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/departments/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "departments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Department",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Product\",\n  \"description\": \"Tim product management\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/departments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "departments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Department",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Admin\",\n  \"description\": \"Administrator sistem internal\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/departments/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "departments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Department",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/departments/5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "departments",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Users By Department",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users?department_id=2&is_active=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "department_id",
+                  "value": "2"
+                },
+                {
+                  "key": "is_active",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"department_id\": 2,\n  \"full_name\": \"User Baru\",\n  \"email\": \"userbaru@briinternal.local\",\n  \"password_hash\": \"$2y$10$dummyhash\",\n  \"is_active\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"department_id\": 2,\n  \"full_name\": \"Sylvia Sylvia Updated\",\n  \"email\": \"sylvia.updated@briinternal.local\",\n  \"is_active\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/7",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Job Positions",
+      "item": [
+        {
+          "name": "Get Job Positions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/job-positions?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "job-positions"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Job Positions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/job-positions?department_id=5&is_active=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "job-positions"
+              ],
+              "query": [
+                {
+                  "key": "department_id",
+                  "value": "5"
+                },
+                {
+                  "key": "is_active",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Job Position By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/job-positions/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "job-positions",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Job Position",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"department_id\": 5,\n  \"title\": \"DevOps Engineer\",\n  \"description\": \"Menangani deployment dan infrastruktur\",\n  \"employment_type\": \"Full Time\",\n  \"level\": \"Mid\",\n  \"is_active\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/job-positions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "job-positions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Job Position",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"department_id\": 5,\n  \"title\": \"Backend Engineer Senior\",\n  \"employment_type\": \"Full Time\",\n  \"level\": \"Senior\",\n  \"is_active\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/job-positions/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "job-positions",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Job Position",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/job-positions/4",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "job-positions",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Application Statuses",
+      "item": [
+        {
+          "name": "Get Application Statuses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/application-statuses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "application-statuses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Application Status By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/application-statuses/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "application-statuses",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Application Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"assessment\",\n  \"name\": \"Assessment\",\n  \"description\": \"Kandidat sedang tahap assessment\",\n  \"sort_order\": 7,\n  \"is_active\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/application-statuses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "application-statuses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Application Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"interview\",\n  \"name\": \"Interview\",\n  \"description\": \"Kandidat sedang proses interview teknis\",\n  \"sort_order\": 3,\n  \"is_active\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/application-statuses/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "application-statuses",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Application Status",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/application-statuses/6",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "application-statuses",
+                "6"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Interview Statuses",
+      "item": [
+        {
+          "name": "Get Interview Statuses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interview-statuses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interview-statuses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Interview Status By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interview-statuses/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interview-statuses",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Interview Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"review\",\n  \"name\": \"Review\",\n  \"description\": \"Interview menunggu review interviewer\",\n  \"sort_order\": 7,\n  \"is_active\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/interview-statuses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interview-statuses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Interview Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"scheduled\",\n  \"name\": \"Scheduled\",\n  \"description\": \"Interview sudah dijadwalkan ulang dengan catatan baru\",\n  \"sort_order\": 1,\n  \"is_active\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/interview-statuses/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interview-statuses",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Interview Status",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interview-statuses/6",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interview-statuses",
+                "6"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Interviews",
+      "item": [
+        {
+          "name": "Get Interviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interviews?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Interviews By Candidate",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interviews?candidate_name=Henry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews"
+              ],
+              "query": [
+                {
+                  "key": "candidate_name",
+                  "value": "Henry"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Interviews By Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interviews?status_id=2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews"
+              ],
+              "query": [
+                {
+                  "key": "status_id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Interviews By PIC",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interviews?pic_user_id=2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews"
+              ],
+              "query": [
+                {
+                  "key": "pic_user_id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Interviews By Date Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interviews?scheduled_from=2026-03-13 00:00:00&scheduled_to=2026-03-18 23:59:59",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews"
+              ],
+              "query": [
+                {
+                  "key": "scheduled_from",
+                  "value": "2026-03-13 00:00:00"
+                },
+                {
+                  "key": "scheduled_to",
+                  "value": "2026-03-18 23:59:59"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Interviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interviews?q=backend",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "backend"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Interview By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interviews/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Interview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"candidate_name\": \"Budi Santoso\",\n  \"candidate_email\": \"budi@mail.com\",\n  \"candidate_phone\": \"081234567890\",\n  \"job_position_id\": 1,\n  \"pic_user_id\": 2,\n  \"host_user_id\": 4,\n  \"status_id\": 1,\n  \"interview_type\": \"Technical Interview\",\n  \"scheduled_at\": \"2026-03-20 10:00:00\",\n  \"finished_at\": \"2026-03-20 11:00:00\",\n  \"meeting_link\": \"https://meet.google.com/test-budi\",\n  \"interview_location\": \"Google Meet\",\n  \"notes\": \"Candidate scheduled for technical round\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/interviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Interview",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status_id\": 3,\n  \"notes\": \"Candidate passed interview\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/interviews/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Interview",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interviews/8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interviews",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
