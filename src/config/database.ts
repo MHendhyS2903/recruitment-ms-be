@@ -1,14 +1,23 @@
 import mysql from "mysql2/promise";
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST || "127.0.0.1",
-  port: Number(process.env.DB_PORT || 3306),
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "recruitment_db",
-  waitForConnections: true,
-  connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 10),
-  queueLimit: 0,
-});
+const connectionUri = process.env.DATABASE_URL || process.env.MYSQL_URL;
+
+const pool = connectionUri
+  ? mysql.createPool({
+      uri: connectionUri,
+      waitForConnections: true,
+      connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 10),
+      queueLimit: 0,
+    })
+  : mysql.createPool({
+      host: process.env.DB_HOST || process.env.MYSQLHOST || "127.0.0.1",
+      port: Number(process.env.DB_PORT || process.env.MYSQLPORT || 3306),
+      user: process.env.DB_USER || process.env.MYSQLUSER || "root",
+      password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || "",
+      database: process.env.DB_NAME || process.env.MYSQLDATABASE || process.env.MYSQL_DATABASE || "railway",
+      waitForConnections: true,
+      connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 10),
+      queueLimit: 0,
+    });
 
 export default pool;

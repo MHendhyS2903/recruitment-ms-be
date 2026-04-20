@@ -29,7 +29,7 @@ src/
 
 1. Import schema MySQL dari `internal/db/mysql/recruitment_schema.sql`
 2. Copy `.env.example` menjadi `.env`
-3. Pastikan `DB_NAME=recruitment_ms`
+3. Pastikan database mengarah ke `railway` atau set env Railway bawaan
 4. Jalankan:
 
 ```bash
@@ -53,11 +53,12 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=
-DB_NAME=recruitment_ms
+DB_NAME=railway
 DB_CONNECTION_LIMIT=10
 CORS_ORIGIN=*
 JWT_SECRET=change-this-secret
 JWT_EXPIRES_IN=12h
+UPLOAD_DIR=./uploads
 ```
 
 ## Base URL
@@ -65,6 +66,57 @@ JWT_EXPIRES_IN=12h
 ```text
 http://localhost:3001/api
 ```
+
+## Railway Deploy
+
+Backend ini sudah mendukung env Railway bawaan. Anda bisa memakai salah satu dari dua pendekatan berikut:
+
+### Opsi 1: pakai env app sendiri
+
+```env
+DB_HOST=mysql.railway.internal
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_NAME=railway
+DB_CONNECTION_LIMIT=10
+JWT_SECRET=your_random_secret
+JWT_EXPIRES_IN=12h
+CORS_ORIGIN=https://your-frontend-domain.com
+NODE_ENV=production
+UPLOAD_DIR=/data/uploads
+```
+
+### Opsi 2: pakai env bawaan Railway
+
+App ini otomatis fallback ke variable berikut bila `DB_*` tidak diisi:
+
+```env
+MYSQLHOST
+MYSQLPORT
+MYSQLUSER
+MYSQLPASSWORD
+MYSQLDATABASE
+MYSQL_DATABASE
+MYSQL_URL
+DATABASE_URL
+```
+
+Yang tetap perlu Anda set manual di service backend:
+
+```env
+JWT_SECRET=your_random_secret
+JWT_EXPIRES_IN=12h
+CORS_ORIGIN=https://your-frontend-domain.com
+NODE_ENV=production
+UPLOAD_DIR=/data/uploads
+```
+
+Catatan:
+
+- `UPLOAD_DIR=/data/uploads` disarankan bila Anda mount Railway Volume.
+- Jika tidak memakai volume, upload file lokal bisa hilang saat redeploy atau restart.
+- Start command yang dipakai project ini adalah `npm start`.
 
 ## Implemented Endpoints
 
